@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Test Case Generator</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>AI Test Case Generator</h1>
+<p class="subtitle">Rule-Based Expert System</p>
+
+<form method="POST">
+
+<input type="text" name="username" placeholder="Enter Username">
+<input type="password" name="password" placeholder="Enter Password">
+
+<button type="submit" name="action" value="run">Run Test</button>
+<button type="submit" name="action" value="generate">Generate Test Cases</button>
+
+</form>
+
+{% if result %}
+<div class="result {{ 'pass' if 'PASS' in result else 'fail' }}">
+{{ result }}
+</div>
+{% endif %}
+
+{% if test_cases %}
+<h2>Generated Test Cases</h2>
+
+<table>
+<tr>
+<th>Username</th>
+<th>Password</th>
+<th>Expected</th>
+</tr>
+
+{% for t in test_cases %}
+<tr>
+<td>{{t.username}}</td>
+<td>{{t.password}}</td>
+<td>{{t.result}}</td>
+</tr>
+{% endfor %}
+
+</table>
+{% endif %}
+
+</div>
+
+</body>
+</html>
